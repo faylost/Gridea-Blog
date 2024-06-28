@@ -1,0 +1,38 @@
+
+  <div class="post-list scroll-y">
+    <% posts.forEach(function(post) { %>
+
+    <article class="post-list-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+      <div class="list-container">
+        <div class="list-main">
+          <div class="list-top">
+            <a itemprop="url" href="<%= post.link %>">
+              <h2 class="list-title" itemprop="name headline">
+                <%= post.title %>
+              </h2>
+            </a>
+          </div>
+          <div class="list-mid">
+            <div class="list-content" itemprop="articleBody">
+              <%- post.searchedPreview %>
+            </div>
+            <% if (post.feature) { %>
+            <div class="post-img" style="background-image: url('<%= post.feature %>')" alt="<%= post.title %> 缩略图">
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="list-meta">
+        <div class="list-tag">
+          <% post.tags.forEach(function(tag) { %>
+            <a href="<%= tag.link %>">#<%= tag.name %></a>
+          <% }); %>
+        </div>
+        <div class="list-time">
+          <time class="list-post-date" datetime="<%= post.date %>" itemprop="datePublished"><%= post.dateFormat %></time>
+        </div>
+      </div>
+    </article>
+    <% }); %>
+  </div>

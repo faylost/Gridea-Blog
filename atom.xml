@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://www.i-fay.com</id>
+    <title>Fay&apos;s blog</title>
+    <updated>2024-06-28T02:39:25.191Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://www.i-fay.com"/>
+    <link rel="self" href="https://www.i-fay.com/atom.xml"/>
+    <subtitle>温故而知新11111</subtitle>
+    <logo>https://www.i-fay.com/images/avatar.png</logo>
+    <icon>https://www.i-fay.com/favicon.ico</icon>
+    <rights>All rights reserved 2024, Fay&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[测试2]]></title>
+        <id>https://www.i-fay.com/post/ce-shi-2/</id>
+        <link href="https://www.i-fay.com/post/ce-shi-2/">
+        </link>
+        <updated>2024-06-26T07:40:58.000Z</updated>
+        <content type="html"><![CDATA[<p>测试2测试2测试2测试2测试2测试2测试2</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OneDrive 实现同步指定文件夹]]></title>
+        <id>https://www.i-fay.com/post/onedrive-shi-xian-tong-bu-zhi-ding-wen-jian-jia/</id>
+        <link href="https://www.i-fay.com/post/onedrive-shi-xian-tong-bu-zhi-ding-wen-jian-jia/">
+        </link>
+        <updated>2024-06-26T01:24:42.000Z</updated>
+        <content type="html"><![CDATA[<p>1、以管理员身份进入cmd命令行；</p>
+<p>2、输入mklink /d &quot;onedrive文件夹地址\需要同步的文件夹名&quot; &quot;需要同步的文件夹地址&quot;</p>
+<p>比如我要备份的文件夹是C:\Users\XXX\Documents\doc，OneDrive文件夹的地址为C:\Users\XXX\OneDrive，则在命令行中输入</p>
+<pre><code>mklink /d &quot;C:\Users\XXX\OneDrive\doc&quot; &quot;C:\Users\XXX\Documents\doc&quot;
+</code></pre>
+<p>3、如果成功，会输出提示：&quot;创建的符号链接&quot;。</p>
+<p>然后OneDrive就会自动同步备份该文件夹了。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[测试测试测试]]></title>
+        <id>https://www.i-fay.com/post/ce-shi-ce-shi-ce-shi/</id>
+        <link href="https://www.i-fay.com/post/ce-shi-ce-shi-ce-shi/">
+        </link>
+        <updated>2024-06-21T03:00:02.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hugo 文章内链卡片显示]]></title>
+        <id>https://www.i-fay.com/post/2024-05-15-Hugo internal link article card/</id>
+        <link href="https://www.i-fay.com/post/2024-05-15-Hugo internal link article card/">
+        </link>
+        <updated>2024-05-14T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="代码">代码</h2>
+<p>创建 <code>/layouts/shortcodes/link.html</code>：</p>
+<pre><code class="language-html">{{$URL := .Get 0}}
+{{ with .Site.GetPage $URL }}
+&lt;div class=&quot;post-preview&quot;&gt;
+  &lt;div class=&quot;post-preview--meta&quot; style=&quot;width:100%;&quot;&gt;
+    &lt;div class=&quot;post-preview--middle&quot;&gt;
+      &lt;h4 class=&quot;post-preview--title&quot;&gt;
+        &lt;a target=&quot;_blank&quot; href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;
+      &lt;/h4&gt;
+      &lt;time class=&quot;post-preview--date&quot;&gt;{{ .Date.Format ( default &quot;2006-01-02&quot;) }}&lt;/time&gt;
+      {{ if .Params.tags }}
+      &lt;small&gt;{{ range .Params.tags }}#{{ . }}&amp;nbsp;{{ end }}&lt;/small&gt;
+      {{ end }}
+      &lt;section style=&quot;max-height:105px;overflow:hidden;&quot; class=&quot;post-preview--excerpt&quot;&gt;
+        {{ .Summary | plainify}}
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{{ end }}
+
+</code></pre>
+<h2 id="效果">效果：</h2>
+<figure data-type="image" tabindex="1"><img src="https://img.i-fay.com/blog-pic/2024/05/78f2b705aad9a386336d89f3e7e9ec67.png" alt="image.png" loading="lazy"></figure>
+<p>⚠️样式 CSS 代码需自行设置</p>
+<h2 id="使用方式">使用方式：</h2>
+<pre><code class="language-java">{\{&lt;link &quot;bitcron-auto-article-refer&quot;&gt;}} //去掉&quot;\&quot;
+</code></pre>
+<p>其中 <code>link</code> 匹配短代码模板 <code>link.html</code> ，之后填的 <code>bitcron-auto-article-refer</code> 是文章 md 的文件名。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://www.i-fay.com/post/hello-gridea/</id>
+        <link href="https://www.i-fay.com/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+<div class="music"></div>
+]]></content>
+    </entry>
+</feed>

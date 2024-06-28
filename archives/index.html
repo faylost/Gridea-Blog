@@ -1,0 +1,500 @@
+  <!DOCTYPE html>
+<html class="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Fay&#39;s blog
+    </title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3695727_uhu2e51wvn.css">
+    <link rel="stylesheet" href="https://www.i-fay.com/styles/main.css" />
+    <script src="https://www.i-fay.com/media/js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cplayer/dist/cplayer.min.js"></script>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+</head>
+<body class="body">
+
+  <div class="bg"></div>
+  <div class="main">
+    
+<header class="header">
+  <div class="header-1">
+    <div class="site-info-block">
+
+      <a class="site-logo" href="https://www.i-fay.com">
+        <img class="site-logo" src="https://www.i-fay.com/media/img/default.png" alt="Fay&#39;s blog">
+      </a>
+
+      <div class="site-info">
+        <a class="site-name" href="https://www.i-fay.com">
+          Fay&#39;s blog
+        </a>
+        <p class="site-description">
+          温故而知新11111
+        </p>
+      </div>
+    </div>
+    <nav id="nav-menu" role="navigation">
+      <form id="gridea-search-form" class="search" action="/search" method="GET">
+        <i class="iconfont icon-search"></i>
+        <input type="search" name="q" placeholder="输入关键词搜索&hellip;">
+      </form>
+      
+        
+        
+          <a href="/"><i class="iconfont icon-home"></i>所有文章</a>
+        
+      
+        
+        
+          <a href="/tag/talk"><i class="iconfont icon-talk"></i>不知所云</a>
+        
+      
+        
+        
+          <a href="/tag/study"><i class="iconfont icon-life"></i>折腾记录</a>
+        
+      
+        
+        
+          <a href="/post/about"><i class="iconfont icon-about"></i>关于</a>
+        
+      
+    </nav>
+  </div>
+  <div class="header-2">
+    <div class="hotpost">
+      <div class="main-title">
+        <div class="title" itemprop="name headline">Hot Map</div>
+      </div>
+      <div class="sidebar-content">
+        <div id="total">
+  <div class="total-col">
+    <span>
+      <h5 id="days" class="tooltip" data-tooltip="起始于:2024-06-20">
+        <script>
+          function daysBetweenDates(date1, date2) {
+            // 确保date1是开始日期，date2是结束日期  
+            if (date1 > date2) {
+              [date1, date2] = [date2, date1];
+            }
+
+            // 获取两个日期的时间戳  
+            var oneDay = 1000 * 60 * 60 * 24;
+            var diffInTime = date2.getTime() - date1.getTime();
+
+            // 计算天数差  
+            var diffInDays = Math.round(diffInTime / oneDay * 10) / 10;
+
+            return diffInDays;
+          }
+          // 示例用法
+          var startDatefrom = document.getElementById('days').getAttribute('data-tooltip');
+          var startDate = new Date(startDatefrom);
+          var endDate = new Date(); // 默认为当前日期和时间  
+
+          var daysPassed = daysBetweenDates(startDate, endDate);
+          document.getElementById("days").textContent = daysPassed;
+        </script>
+        天
+      </h5>
+      <span>DAYS</span>
+    </span>
+    <span>
+      <h5>
+        8
+      </h5>
+      <span>TAGS</span>
+    </span>
+  </div>
+  <div class="total-col">
+    <span>
+      <h5>
+        6
+      </h5>
+      <span>POSTS</span>
+    </span>
+    <span>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <h5 class="tooltip" data-tooltip="相当于一本《断魂枪》">
+        0.71
+        千
+      </h5>
+      <span>WORDS</span>
+    </span>
+  </div>
+  <div class="total-col">
+    <span>
+      <h5>
+        -
+      </h5>
+      <span>VIEWS</span>
+    </span>
+    <span>
+      <h5>-</h5>
+      <span>COMMENTS</span>
+    </span>
+  </div>
+</div>
+<div id="hotmap"></div>
+<script type="text/javascript">
+  /*结果变量*/
+  const resultArr = [];
+
+  function addZero(value) {
+    return value < 10 ? "0" + value : value;
+  }
+
+  let apiUrl = '/api/index.html'; // 假设这是正确的 API URL  
+
+  fetch(apiUrl, {
+    method: 'GET'
+  }).then(response => {
+    return response.json();
+  }).then(data => {
+    for (let key in data.posts) {
+      let date = new Date(data.posts[key].date);
+      let dateFormat = `${date.getFullYear()}-${addZero(date.getMonth() + 1)}-${addZero(date.getDate())}`;
+      const item = {
+        title: data.posts[key].title,
+        pubDate: dateFormat,
+      };
+      resultArr.push(item);
+    }
+
+    // 在这里处理分组逻辑  
+    const groupedByDate = {};
+    resultArr.forEach(result => {
+      const Date = result.pubDate;
+      if (!groupedByDate[Date]) {
+        groupedByDate[Date] = {
+          Date,
+          Num: 1,
+          Title: [result.title]
+        };
+      } else {
+        groupedByDate[Date].Num++;
+        groupedByDate[Date].Title.push(result.title);
+      }
+    });
+
+    // 将 groupedByDate 的值转换为数组  
+    const resultList = Object.values(groupedByDate);
+
+    var today = new Date();
+    var dates = [];
+
+    for (let i = -1; i < 59; i++) {
+      let year = today.getFullYear();
+      let month = today.getMonth();
+      let day = today.getDate() - i;
+      // 如果日期小于1，则需要调整月份和年份  
+      if (day < 1) {
+        month--;
+        if (month < 0) {
+          month = 11;
+          year--;
+        }
+        day += new Date(year, month + 1, 0).getDate(); // 获取上个月的天数  
+      }
+      dates.unshift({
+        Date: new Date(year, month, day).toISOString().split('T')[0]
+      });
+    }
+
+    function hotmapbuilding() {
+      const hotmap = dates.map(objB => {
+        // 在arra中查找匹配的date  
+        const matchingObjA = resultList.find(objA => objA.Date === objB.Date);
+
+        // 根据是否找到匹配项来决定输出的HTML  
+        if (matchingObjA) {
+          // 如果找到匹配项，则使用arra中的value作为链接的值  
+          return `<div class="havepost tooltip" data-tooltip="${matchingObjA.Date}&#10;POST: ${matchingObjA.Num}"></div>`;
+        } else {
+          // 如果没有找到匹配项，则使用arrb中的date作为链接的文本  
+          return `<div class="nopost tooltip" data-tooltip="${objB.Date}"></div>`;
+        }
+      });
+      return hotmap.join('\n'); // 返回包含所有链接的字符串，每个链接用换行符分隔  
+    }
+    document.getElementById("hotmap").innerHTML = hotmapbuilding();
+  }).catch(err => {
+    fayFun.ajaxText('butterBar', 'body', 3000, '热力图加载错误！');
+  });
+</script>
+      </div>
+    </div>
+    <div class="taglist">
+      <div class="main-title">
+        <div class="title" itemprop="name headline">Tags</div>
+      </div>
+      <div class="sidebar-content">
+        
+    <a href="https://www.i-fay.com/tag/study/"><i class="iconfont icon-tag"></i>折腾记录<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/onedrive/"><i class="iconfont icon-tag"></i>Onedrive<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/talk/"><i class="iconfont icon-tag"></i>不知所云<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/pSMAS7mn8/"><i class="iconfont icon-tag"></i>测试<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/hugo/"><i class="iconfont icon-tag"></i>Hugo<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/zhe-teng/"><i class="iconfont icon-tag"></i>折腾<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/nei-lian-qia-pian/"><i class="iconfont icon-tag"></i>内链卡片<span></span><i class="iconfont icon-right"></i></a>
+
+    <a href="https://www.i-fay.com/tag/JIHzWe6tO/"><i class="iconfont icon-tag"></i>Gridea<span></span><i class="iconfont icon-right"></i></a>
+
+      </div>
+    </div>
+  </div>
+  <footer id="footer" role="contentinfo">
+    &copy;
+    <a href="https://www.i-fay.com">
+      Fay&#39;s blog
+    </a>.
+    由 <a href="https://typecho.org">Hugo</a> 强力驱动
+  </footer><!-- end #footer -->
+</header>
+    <div class="main-container">
+      <div class="main-header">
+        <div class="header-block">
+          <div class="post-list-header">
+            <div class="main-title">
+              <h1 class="title">所有文章
+                <span class="suptitle">
+                </span>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="circle-side"></div>
+        <!-- {{ partial "music.html" .}} -->
+      </div>
+      
+    <div class="post-list scroll-y">
+      
+        
+        
+          <article class="post-list-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="list-container">
+              <div class="list-main">
+                <div class="list-top">
+                  <a itemprop="url" href="https://www.i-fay.com/post/ce-shi-2/">
+                    <h2 class="list-title" itemprop="name headline">
+                      测试2
+                    </h2>
+                  </a>
+                </div>
+                <div class="list-mid">
+                  <div class="list-content" itemprop="articleBody">
+                    测试2测试2测试2测试2测试2测试2测试2
+
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-tag">
+                
+              </div>
+              <div class="list-time">
+                <time class="list-post-date" datetime="2024-06-26 03:40:58" itemprop="datePublished"></time>
+              </div>
+            </div>
+          </article>
+        
+      
+        
+        
+          <article class="post-list-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="list-container">
+              <div class="list-main">
+                <div class="list-top">
+                  <a itemprop="url" href="https://www.i-fay.com/post/onedrive-shi-xian-tong-bu-zhi-ding-wen-jian-jia/">
+                    <h2 class="list-title" itemprop="name headline">
+                      OneDrive 实现同步指定文件夹
+                    </h2>
+                  </a>
+                </div>
+                <div class="list-mid">
+                  <div class="list-content" itemprop="articleBody">
+                    1、以管理员身份进入cmd命令行；
+2、输入mklink /d &quot;onedrive文件夹地址\需要同步的文件夹名&quot; &quot;需要同步的文件夹地址&quot;
+比如我要备份的文件夹是C:\Users\XXX\Docum...
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-tag">
+                
+                <a href="https://www.i-fay.com/tag/study/">#折腾记录</a>
+                
+                <a href="https://www.i-fay.com/tag/onedrive/">#Onedrive</a>
+                
+              </div>
+              <div class="list-time">
+                <time class="list-post-date" datetime="2024-06-26 09:24:42" itemprop="datePublished"></time>
+              </div>
+            </div>
+          </article>
+        
+      
+        
+        
+          <article class="post-list-item talk" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="list-container">
+              <div class="list-main">
+                <div class="list-meta">
+                  <div class="list-time">
+                    <time class="list-post-date" datetime="2024-06-21 11:00:02" itemprop="datePublished"></time>
+                  </div>
+                  <div class="list-tag">
+                    
+                    <a href="https://www.i-fay.com/tag/talk/">#不知所云</a>
+                    
+                    <a href="https://www.i-fay.com/tag/pSMAS7mn8/">#测试</a>
+                    
+                  </div>
+                </div>
+                <div class="list-mid">
+                  <div class="list-content" itemprop="articleBody">
+                    <p><strong>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</strong></p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+      
+        
+        
+          <article class="post-list-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="list-container">
+              <div class="list-main">
+                <div class="list-top">
+                  <a itemprop="url" href="https://www.i-fay.com/post/2024-05-15-Hugo internal link article card/">
+                    <h2 class="list-title" itemprop="name headline">
+                      Hugo 文章内链卡片显示
+                    </h2>
+                  </a>
+                </div>
+                <div class="list-mid">
+                  <div class="list-content" itemprop="articleBody">
+                    代码
+创建 /layouts/shortcodes/link.html：
+{{$URL := .Get 0}}
+{{ with .Site.GetPage $URL }}
+&lt;div class=&quot;post-preview&q...
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-tag">
+                
+                <a href="https://www.i-fay.com/tag/hugo/">#Hugo</a>
+                
+                <a href="https://www.i-fay.com/tag/zhe-teng/">#折腾</a>
+                
+                <a href="https://www.i-fay.com/tag/nei-lian-qia-pian/">#内链卡片</a>
+                
+              </div>
+              <div class="list-time">
+                <time class="list-post-date" datetime="2024-05-15 12:00:00" itemprop="datePublished"></time>
+              </div>
+            </div>
+          </article>
+        
+      
+        
+        
+          <article class="post-list-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="list-container">
+              <div class="list-main">
+                <div class="list-top">
+                  <a itemprop="url" href="https://www.i-fay.com/post/hello-gridea/">
+                    <h2 class="list-title" itemprop="name headline">
+                      Hello Gridea
+                    </h2>
+                  </a>
+                </div>
+                <div class="list-mid">
+                  <div class="list-content" itemprop="articleBody">
+                    👏  欢迎使用 Gridea ！
+✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
+
+Github
+Gridea 主页
+示例网站
+特性👇
+📝  你可以使用最酷的 Markdo...
+                  </div>
+                  
+                  <div class="post-img" style="background-image: url('https://www.i-fay.com/post-images/hello-gridea.png')" alt="Hello Gridea 缩略图">
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-tag">
+                
+                <a href="https://www.i-fay.com/tag/JIHzWe6tO/">#Gridea</a>
+                
+              </div>
+              <div class="list-time">
+                <time class="list-post-date" datetime="2018-12-12 12:00:00" itemprop="datePublished"></time>
+              </div>
+            </div>
+          </article>
+        
+      
+      <button id="load-more" nextpage="">加载更多文章</button>
+    </div>
+
+      </div>
+  </div>
+
+  <div class="music-sidebar">
+  <div class="music-sidebar-top">
+    <div class="music-sidebar-title">音乐播放器</div>
+    <div class="music-sidebar-switch">关闭</div>
+  </div>
+  <div id="musicApp"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script src="https://www.i-fay.com/media/js/pjax.js"></script>
+<script src="https://www.i-fay.com/media/js/main.js"></script>
+</body>
+
+</html>
