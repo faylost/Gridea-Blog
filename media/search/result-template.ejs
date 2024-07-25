@@ -1,0 +1,54 @@
+  <div class="main-title">Latest Posts</div>
+  <div class="postlatestlist">
+  <% posts.forEach(function(post) { %>
+      <% let postTags = post.tags.map(tag => tag.slug); %>
+      <% if (postTags.includes('talk')) { %>
+        <article class="postlist-item talk" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="talk-author">
+            <img class="avatar" src="<%= themeConfig.domain %>/images/avatar.png">
+            <div class="name">Fay Jiang</div>
+          </div>
+          <div class="talk-content" itemprop="articleBody">
+            <%- post.content %>  
+          </div>
+          <div class="talk-meta">
+            <time class="talk-date" datetime="<%= post.dateFormat %>" itemprop="datePublished">
+              <%= post.dateFormat %>
+            </time>
+            ·
+            <div class="talk-tag">   
+              <% post.tags.forEach(function(tag) { %>
+                <a href="<%= tag.link %>"><i class="iconfont icon-tag"></i><%= tag.name %></a>
+              <% }); %>  
+            </div>  
+          </div>
+        </article>
+      <% }else{ %>
+        <article class="postlist-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="list-meta">
+              <div class="list-tag">
+                  <% post.tags.forEach(function(tag) { %>
+                      <a href="<%= tag.link %>"><i class="iconfont icon-tag"></i><%= tag.name %></a>
+                  <% }); %>
+              </div>
+          </div>
+          <div class="list-title">
+              <a itemprop="url" href="<%= post.link %>">
+                <h2 itemprop="name headline"><%= post.title %></h2>
+              </a>
+          </div>
+          <div class="list-content" itemprop="articleBody">
+              <div class="list-dec">
+                  <%- post.searchedPreview %>
+              </div>
+              <% if (post.feature) { %>
+                  <div class="post-img" style="background-image: url('<%= post.feature %>')" alt="<%= post.title %> 缩略图"></div>
+              <% } %>
+          </div>
+          <div class="list-time">
+              <time class="list-post-date" datetime="<%= post.dateFormat %>" itemprop="datePublished"><%= post.dateFormat %></time>
+          </div>
+        </article>
+      <% } %>
+  <% }); %>
+  </div>

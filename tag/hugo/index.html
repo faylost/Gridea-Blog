@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>
+            Fay&#39;s blog
+        </title>
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3695727_y9766uhuezk.css">
+        <link rel="stylesheet" href="https://www.i-fay.com/styles/main.css" />
+        <script src="https://www.i-fay.com/media/js/jquery-3.7.1.min.js"></script>
+        <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+    </head>
+    <body class="body">
+
+<div class="main">   
+
+    <div id="stars">
+    <div class="star"></div>
+</div>
+<div class="header">
+    <div class="siteinfo">
+        <a class="logo" href="https://www.i-fay.com">
+            
+                <img src="\media\images\custom-siteLogo.jpg" alt="Fay&#39;s blog">
+            
+        </a>
+        <div class="info">
+            <a class="site-name" href="https://www.i-fay.com">
+                Fay&#39;s blog
+            </a>
+        </div>
+    </div>
+    <a class="rssreader" href="/rssreader"><i class="iconfont icon-rssreader"></i>RssReader</a>
+    <div class="header-center">
+        <div class="minimusic-block">
+    <div class="minimusic">
+        <div class="fengmian">
+            <i class="iconfont icon-music"></i>
+        </div>
+        <div class="minimusic-main">
+            <div class="minimusic-title">
+                点击播放音乐
+            </div>
+            <div class="minimusic-ctl">
+                <i class="iconfont play-switch icon-play"></i>
+                <i class="iconfont icon-playlist"></i>
+            </div>
+        </div>
+    </div>
+</div>
+        <form id="gridea-search-form" class="search" action="/search" method="GET">
+    <div class="enter">Enter</div>
+    <input type="search" name="q" placeholder="输入关键词搜索&hellip;">
+</form>
+    </div>
+    
+
+<div class="menus" role="navigation">
+    <div class="menus-hover"></div>
+    <div class="menus-item">
+    
+        
+        
+            <a href="/"><i class="iconfont icon-home"></i>首页</a>
+        
+    
+        
+        
+            <a href="/tag/talk"><i class="iconfont icon-talk"></i>微言</a>
+        
+    
+        
+        
+            <a href="/tag/study"><i class="iconfont icon-life"></i>折腾</a>
+        
+    
+        
+        
+            <a href="/post/about"><i class="iconfont icon-about"></i>关于</a>
+        
+    
+    </div>
+    <!-- <div id="clock"></div> -->
+</div>
+</div>
+
+    <div class="postlist pjaxblock">
+    <div class="tag-title">
+        Hugo
+        <span class="suptitle">
+            
+            
+            
+            
+                
+            
+                
+                
+                
+            
+                
+            
+            
+            1
+          </span>
+    </div>
+    <div class="postlatestlist">
+    
+        
+        
+            <article class="postlist-item normal" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="list-main">
+        <div class="list-content" itemprop="articleBody">
+            <div class="list-title">
+                <a itemprop="url" href="https://www.i-fay.com/post/2024-05-15-Hugo internal link article card/">
+                    <h2 itemprop="name headline">Hugo 文章内链卡片显示</h2>
+                </a>
+                <div class="preview-link" link="https://www.i-fay.com/post/2024-05-15-Hugo internal link article card/"><i class="iconfont icon-preview"></i></div>
+            </div>
+            <div class="list-dec">
+                代码
+创建 /layouts/shortcodes/link.html：
+{{$URL := .Get 0}}
+{{ with .Site.GetPage $URL }}
+&lt;div class=&quot;post-preview&q...
+            </div>
+        </div>
+        
+    </div>
+    <div class="list-meta">
+        <div class="list-time">
+            <time class="list-post-date" datetime="2024-05-15 12:00:00" itemprop="datePublished">2 个月前</time>
+        </div>
+        <div class="list-tag">
+            
+                <a href="https://www.i-fay.com/tag/study/">折腾</a>
+            
+                <a href="https://www.i-fay.com/tag/hugo/">Hugo</a>
+            
+                <a href="https://www.i-fay.com/tag/nei-lian-qia-pian/">内链卡片</a>
+            
+            <div class="hline"></div>
+            <i class="iconfont icon-bookmark"></i>
+        </div>        
+    </div>
+    
+</article>
+        
+    
+    </div>
+    <button id="load-more" nextpage="">加载更多文章</button>
+</div>
+
+</div>
+
+        <div class="music-sidebar">
+            <div class="music-sidebar-top">
+            <div class="music-sidebar-title">音乐播放器</div>
+            <div class="music-sidebar-switch">关闭</div>
+            </div>
+            <div id="musicApp"></div>
+        </div>
+        <div class="post-preview"></div>
+        <script src="https://www.i-fay.com/media/js/prism.js"></script>
+        <script src="https://www.i-fay.com/media/js/pjax.js"></script>
+        <script src="https://www.i-fay.com/media/js/nprogress.js"></script>
+        <script src="https://www.i-fay.com/media/js/cplayer.min.js"></script>
+        <script src="https://www.i-fay.com/media/js/main.js"></script>
+    </body> 
+</html>

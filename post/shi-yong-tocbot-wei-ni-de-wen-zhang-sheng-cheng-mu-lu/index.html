@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>
+            Fay&#39;s blog
+        </title>
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3695727_y9766uhuezk.css">
+        <link rel="stylesheet" href="https://www.i-fay.com/styles/main.css" />
+        <script src="https://www.i-fay.com/media/js/jquery-3.7.1.min.js"></script>
+        <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+    </head>
+    <body class="body">
+
+<div class="main">   
+
+    <div id="stars">
+    <div class="star"></div>
+</div>
+<div class="header">
+    <div class="siteinfo">
+        <a class="logo" href="https://www.i-fay.com">
+            
+                <img src="\media\images\custom-siteLogo.jpg" alt="Fay&#39;s blog">
+            
+        </a>
+        <div class="info">
+            <a class="site-name" href="https://www.i-fay.com">
+                Fay&#39;s blog
+            </a>
+        </div>
+    </div>
+    <a class="rssreader" href="/rssreader"><i class="iconfont icon-rssreader"></i>RssReader</a>
+    <div class="header-center">
+        <div class="minimusic-block">
+    <div class="minimusic">
+        <div class="fengmian">
+            <i class="iconfont icon-music"></i>
+        </div>
+        <div class="minimusic-main">
+            <div class="minimusic-title">
+                点击播放音乐
+            </div>
+            <div class="minimusic-ctl">
+                <i class="iconfont play-switch icon-play"></i>
+                <i class="iconfont icon-playlist"></i>
+            </div>
+        </div>
+    </div>
+</div>
+        <form id="gridea-search-form" class="search" action="/search" method="GET">
+    <div class="enter">Enter</div>
+    <input type="search" name="q" placeholder="输入关键词搜索&hellip;">
+</form>
+    </div>
+    
+
+<div class="menus" role="navigation">
+    <div class="menus-hover"></div>
+    <div class="menus-item">
+    
+        
+        
+            <a href="/"><i class="iconfont icon-home"></i>首页</a>
+        
+    
+        
+        
+            <a href="/tag/talk"><i class="iconfont icon-talk"></i>微言</a>
+        
+    
+        
+        
+            <a href="/tag/study"><i class="iconfont icon-life"></i>折腾</a>
+        
+    
+        
+        
+            <a href="/post/about"><i class="iconfont icon-about"></i>关于</a>
+        
+    
+    </div>
+    <!-- <div id="clock"></div> -->
+</div>
+</div>
+
+    <div class="post pjaxblock">
+    <article class="post-normal" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-sidebar">
+    <div id="toc">
+        <div class="toc-title">目录</div>
+    </div>
+    <div class="post-switch">
+        
+        
+            <a class="post-next" href="https://www.i-fay.com/post/zhong-guo-yu-mei-guo-shui-geng-qiang-da-de-shen-du-fen-xi/">
+                <div class="post-next-title">中国与美国：谁更强大的深度分析</div>
+                <i class="iconfont icon-right"></i>
+            </a>
+        
+    </div>
+</div>
+        <div class="post-title">
+            <div class="post-meta">
+                <div class="post-tags">
+                    
+                        
+                            <a href="https://www.i-fay.com/tag/study/">折腾</a>
+                        
+                    
+                </div>
+                <time class="post-date" datetime="2024-07-03 05:16:34" itemprop="datePublished">22 天前发布</time>
+            </div>
+            <h1>使用tocbot为你的文章生成目录</h1>
+        </div>
+        <div class="post-content" itemprop="articleBody">
+          <p>Github项目地址：<a href="https://github.com/tscanlin/tocbot">https://github.com/tscanlin/tocbot</a></p>
+<p>Tocbot 根据 HTML 文档中的标题构建目录 （TOC）。这对于文档网站或长 Markdown 页面很有用，因为它使它们更易于导航。这个库的灵感来自<a href="http://gregfranko.com/jquery.tocify.js/">Tocify</a>，主要区别在于Tocbot使用原生DOM方法，避免了jQuery和jQuery UI依赖。</p>
+<p>用法：<br>
+1、引入JS和CSS</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.27.4/tocbot.min.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.27.4/tocbot.css&quot;&gt;
+</code></pre>
+<p>2、写入js:</p>
+<pre><code class="language-js">$(&quot;.post-content&quot;).children(&quot;h1,h2,h3,h4,h5,h6&quot;).each(function () {
+            // .post-content 为正文容器的 class，根据自己的情况修改
+            var hyphenated = &quot;anchor-&quot; + id;
+            $(this).attr('id', hyphenated);
+            id++;
+        });
+
+        tocbot.init({
+            tocSelector: '.toc',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5, h6',
+        });
+</code></pre>
+<p>以下时更多的参数设置：</p>
+<pre><code class="language-js">ignoreSelector: '.js-toc-ignore',  // 匹配 ignoreSelector 的标题将被跳过。
+hasInnerContainers: false,  // 对于位于内容内部相对或绝对定位容器中的标题 
+linkClass: 'toc-link',  // 要添加到链接上的主要类名。  
+extraLinkClasses: '',  // 要添加到链接上的额外类名。  
+activeLinkClass: 'is-active-link',  // 要添加到活动链接上的类名，即页面上最顶层的标题对应的链接。  
+listClass: 'toc-list',  // 要添加到列表上的主要类名。  
+extraListClasses: '',  // 要添加到列表上的额外类名。
+isCollapsedClass: 'is-collapsed',  // 当列表应该被折叠时添加的类名。  
+collapsibleClass: 'is-collapsible',  // 当列表可以被折叠但不一定被折叠时添加的类名。 
+listItemClass: 'toc-list-item', // 要添加到列表项上的类名。  
+activeListItemClass: 'is-active-li',  // 要添加到活动列表项上的类名。
+collapseDepth: 0,  // 不应该被折叠的标题层级数量。例如，数字6将显示所有内容，因为只有6个标题层级；而数字0将折叠它们所有。被隐藏的部分将在你滚动到其中的标题时展开和关闭。  
+scrollSmooth: true,  // 启用平滑滚动。  
+scrollSmoothDuration: 420,  // 平滑滚动的持续时间（毫秒）。 
+scrollSmoothOffset: 0,  // 平滑滚动的偏移量（从目标位置向上偏移的像素数）。 
+scrollEndCallback: function (e) {},  // 滚动结束时的回调函数。  
+headingsOffset: 1,  // 标题与文档顶部的偏移量（用于微调）。
+throttleTimeout: 50,  // 事件触发之间的超时时间，以确保不会过于频繁（出于性能考虑）。  
+positionFixedSelector: null,  // 要添加positionFixedClass的元素的选择器。  
+positionFixedClass: 'is-position-fixed',  // 当滚动超过fixedSidebarOffset后，添加到侧边栏以使其固定的类名。  
+fixedSidebarOffset: 'auto',  // fixedSidebarOffset可以是任何数字，但默认为'auto',  这会在初始化时将fixedSidebarOffset设置为侧边栏元素从文档顶部开始的offsetTop。    
+includeHtml: false,  // includeHtml可以设置为true，以包含标题节点的HTML标记，而不仅仅是innerText。
+includeTitleTags: false,  // includeTitleTags 自动将链接的 html title 标签设置为与标题匹配。这对于SEO目的或在截断标题时很有用。  
+onClick: function (e) {},  // 应用于toc中所有链接的onclick函数。调用时将事件作为第一个参数传入，可用于阻止传播、阻止默认行为或执行其他操作。  
+orderedList: true,  // orderedList 可以设置为 false 以生成无序列表（ul）而不是有序列表（ol）。 
+scrollContainer: null,  // 如果存在固定的文章滚动容器，则设置它以计算标题的偏移量。  
+skipRendering: false,  // 如果目录（ToC）DOM已由外部系统渲染，则跳过渲染。  
+headingLabelCallback: false,  // 可选的回调函数，用于更改标题标签。例如，它可以用于缩短并在你认为太长的多行标题上放置省略号。每次解析标题时都会调用此函数。它期望一个字符串并返回要显示的修改后的标签。另外，可以在标题上使用 `data-heading-label` 属性来指定在目录中要使用的较短的字符串。函数签名：function (string) =&gt; string   
+ignoreHiddenElements: false,  // 忽略在DOM中隐藏的标题。
+headingObjectCallback: null,  // 可选的回调函数，用于修改解析后的标题的属性。将标题元素作为node参数传入，并将默认解析器提供的信息作为obj参数传入。函数必须返回相同或修改后的obj。如果不返回任何内容，则标题将从目录中排除。函数签名：function (object, HTMLElement) =&gt; object | void
+basePath: '',  // 设置基本路径，如果你在`head`中使用了`base`标签，这将非常有用。
+disableTocScrollSync: false,  // 仅当`tocSelector`在滚动时，保持目录（ToC）的滚动位置与内容同步。
+tocScrollOffset: 0,  // 在滚动页面时，为目录（ToC）的滚动（顶部）位置设置偏移量。仅当`disableTocScrollSync`为false时有效。 
+</code></pre>
+
+        </div>
+    </article>
+</div>
+
+</div>
+
+        <div class="music-sidebar">
+            <div class="music-sidebar-top">
+            <div class="music-sidebar-title">音乐播放器</div>
+            <div class="music-sidebar-switch">关闭</div>
+            </div>
+            <div id="musicApp"></div>
+        </div>
+        <div class="post-preview"></div>
+        <script src="https://www.i-fay.com/media/js/prism.js"></script>
+        <script src="https://www.i-fay.com/media/js/pjax.js"></script>
+        <script src="https://www.i-fay.com/media/js/nprogress.js"></script>
+        <script src="https://www.i-fay.com/media/js/cplayer.min.js"></script>
+        <script src="https://www.i-fay.com/media/js/main.js"></script>
+    </body> 
+</html>
